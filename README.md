@@ -109,9 +109,15 @@ Semua endpoint kecuali register, login, daftar promo, dan daftar toko memerlukan
 
 ## Tangkapan Layar
 
-Halaman masuk aplikasi Di Laundry pada versi web.
+Tampilan aplikasi pada ukuran ponsel, dijalankan dari build web dan ditangkap lewat emulasi perangkat di peramban.
 
-![Tangkapan layar halaman masuk](docs/screenshot.png)
+Beranda setelah masuk, berisi promo terbaru dan rekomendasi toko dari data backend.
+
+![Tangkapan layar beranda](docs/screenshot.png)
+
+Halaman masuk aplikasi Di Laundry.
+
+![Tangkapan layar halaman masuk](docs/screenshot-login.png)
 
 ## Lisensi
 
