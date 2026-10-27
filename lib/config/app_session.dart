@@ -1,8 +1,11 @@
 import 'dart:convert';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:frontend_dilaundry/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AppSession {
+  static const FlutterSecureStorage _secureStorage = FlutterSecureStorage();
+
   static Future<UserModel?> getUser() async {
     final pref = await SharedPreferences.getInstance();
     String? userString = pref.getString('user');
@@ -25,21 +28,24 @@ class AppSession {
     return success;
   }
 
+  // Token Sanctum disimpan di penyimpanan aman platform, bukan di
+  // SharedPreferences, karena token adalah kredensial masuk pengguna.
   static Future<String?> getBearerToken() async {
-    final pref = await SharedPreferences.getInstance();
-    String? token = pref.getString('bearer_token');
-    return token;
+    return _secureStorage.read(key: 'bearer_token');
   }
 
   static Future<bool> setBearerToken(String bearerToken) async {
-    final pref = await SharedPreferences.getInstance();
-    bool success = await pref.setString('bearer_token', bearerToken);
-    return success;
+    await _secureStorage.write(key: 'bearer_token', value: bearerToken);
+    return true;
   }
 
   static Future<bool> removeBearerToken() async {
-    final pref = await SharedPreferences.getInstance();
-    bool success = await pref.remove('bearer_token');
-    return success;
+    await _secureStorage.delete(key: 'bearer_token');
+    return true;
+  }
+
+  static Future<void> clear() async {
+    await removeUser();
+    await removeBearerToken();
   }
 }

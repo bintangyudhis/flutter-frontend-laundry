@@ -1,5 +1,5 @@
 name: frontend_dilaundry
-description: "A new Flutter project."
+description: "Aplikasi Di Laundry, klien Flutter untuk memesan laundry dari backend Laravel Di Laundry."
 publish_to: "none"
 version: 0.1.0
 
@@ -10,9 +10,10 @@ dependencies:
   d_method: ^0.2.6
   flutter:
     sdk: flutter
+  flutter_secure_storage: ^9.2.4
   google_fonts: ^8.0.0
   http: ^1.6.0
-  intl: ^0.18.1
+  intl: ^0.20.2
   shared_preferences: ^2.5.4
 
 dev_dependencies:
