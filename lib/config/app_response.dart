@@ -33,7 +33,7 @@ class AppResponse {
     }
   }
 
-  static invalidInput(BuildContext context, String massageBody) {
+  static void invalidInput(BuildContext context, String massageBody) {
     Map errors = jsonDecode(massageBody)['errors'];
     showDialog( 
       context: context,
@@ -57,7 +57,7 @@ class AppResponse {
                   }).toList(),
                 ),
               );
-            }).toList(),
+            }),
             Padding(
               padding: const EdgeInsets.all(16),
               child: ElevatedButton(

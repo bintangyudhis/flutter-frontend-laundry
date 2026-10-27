@@ -23,7 +23,7 @@ class AppFormat {
 
   // source : DateTime | String\
   // Monday, 5 Jan 23
-  static String shortDate(source) {
+  static String shortDate(dynamic source) {
     switch (source.runtimeType) {
       case String:
         return DateFormat('EEEE, d MMM yy').format(DateTime.parse(source));
@@ -36,7 +36,7 @@ class AppFormat {
 
   // source : DateTime | String\
   // Monday, 5 Januari 2023
-  static String fullDate(source) {
+  static String fullDate(dynamic source) {
     switch (source.runtimeType) {
       case String:
         return DateFormat('EEEE, d MMMM yyyy').format(DateTime.parse(source));

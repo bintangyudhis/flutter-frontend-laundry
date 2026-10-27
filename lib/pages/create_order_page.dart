@@ -208,29 +208,34 @@ class _CreateOrderPageState extends State<CreateOrderPage> {
             'Pilih Paket',
             style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15),
           ),
-          RadioListTile<int>(
-            value: 0,
+          RadioGroup<int>(
             groupValue: _packageIndex,
             onChanged: (value) => setState(() => _packageIndex = value ?? 0),
-            title: const Text('Reguler'),
-            subtitle: Text('${AppFormat.longPrice(widget.shop.price)} per kg'),
-            contentPadding: EdgeInsets.zero,
+            child: Column(
+              children: [
+                RadioListTile<int>(
+                  value: 0,
+                  title: const Text('Reguler'),
+                  subtitle: Text(
+                    '${AppFormat.longPrice(widget.shop.price)} per kg',
+                  ),
+                  contentPadding: EdgeInsets.zero,
+                ),
+                ...List.generate(widget.promos.length, (index) {
+                  final promo = widget.promos[index];
+                  return RadioListTile<int>(
+                    value: index + 1,
+                    title: Text(promo.description),
+                    subtitle: Text(
+                      '${AppFormat.longPrice(promo.newPrice)} per kg, harga '
+                      'normal ${AppFormat.longPrice(promo.oldPrice)}',
+                    ),
+                    contentPadding: EdgeInsets.zero,
+                  );
+                }),
+              ],
+            ),
           ),
-          ...List.generate(widget.promos.length, (index) {
-            final promo = widget.promos[index];
-            return RadioListTile<int>(
-              value: index + 1,
-              groupValue: _packageIndex,
-              onChanged: (value) =>
-                  setState(() => _packageIndex = value ?? 0),
-              title: Text(promo.description),
-              subtitle: Text(
-                '${AppFormat.longPrice(promo.newPrice)} per kg, harga normal '
-                '${AppFormat.longPrice(promo.oldPrice)}',
-              ),
-              contentPadding: EdgeInsets.zero,
-            );
-          }),
           const SizedBox(height: 8),
           const Text(
             'Berat Cucian',

@@ -87,8 +87,8 @@ class ProfilePage extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 46,
-                  backgroundImage: const AssetImage(AppAssets.profile),
-                  onBackgroundImageError: (exception, stackTrace) {},
+                  foregroundImage: const AssetImage(AppAssets.profile),
+                  onForegroundImageError: (exception, stackTrace) {},
                   child: const Icon(Icons.person, size: 40),
                 ),
                 const SizedBox(height: 12),
